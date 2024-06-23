@@ -2,7 +2,7 @@
 //    HEADER FILE GPIO WEST WOLVES 8   //
 /////////////////////////////////////////
 //
-/* Definicion macros pin GPIO*/
+/* Definicion macros pins GPIOS*/
 #define GPIO_DEFINED 1
 #define GPIO0 0
 #define GPIO1 1
