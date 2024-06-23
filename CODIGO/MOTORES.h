@@ -3,17 +3,36 @@
 //      THE WEST WOLVES 8 2024      //
 ////////////////////////////////////*/
 //
-/*LIBRERIA CONTROL DE MOTORES*/
-#include <THMotor.h>
+#define CORRECCION_MD 0 //Factor de correccion de velocidad motor derecho (PWM)
+#define CORRECCION_MI 0 //Factor de correccion de velocidad motor izquierdo (PWM)
+#define VEL_RED 128 //Velocidad lenta de movimiento del robor (PWM)
+#define VEL_GIRO 128  //Velocidad de la rueda lenta al momento de girar (NO ROTAR) (PWM)
+#define VEL_MAX 255 //Velocidad maxima del robor (PWM)
 //
-#define CORRECCION_MD 0
-#define CORRECCION_MI 0
-#define VEL_RED 128
-#define VEL_GIRO 128
-#define VEL_MAX 255
+#if GPIO_DEFINED //Si se definieron los GPIOS
+/*Pins de MOTORES*/
+#define M_A_E GPIO21
+#define M_A_1 GPIO18
+#define M_A_2 GPIO19
+#define M_B_1 GPIO5
+#define M_B_2 GPIO17
+#define M_B_E GPIO16
+#endif
+/*Funcion de inicializacion de pins de los motores*/
+void initMotores(){
+  pinMode(M_A_1, OUTPUT);
+  pinMode(M_A_2, OUTPUT);
+  pinMode(M_A_E, OUTPUT);
+  pinMode(M_B_1, OUTPUT);
+  pinMode(M_B_2, OUTPUT);
+  pinMode(M_B_E, OUTPUT);
+}
+
 /*Objetos tipo motor*/
 THMotor MOTOR_D(M_A_1, M_A_2, M_A_E);
 THMotor MOTOR_I(M_B_1, M_B_2, M_B_E);
+
+/*FUNCIONES DE MOVIMIENTO DEL ROBOT*/
 void detener() {
   MOTOR_D.run(RELEASE);
   MOTOR_I.run(RELEASE);
