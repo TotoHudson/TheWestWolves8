@@ -4,7 +4,7 @@
 ////////////////////////////////////*/
 //
 #define MAXRANGE 150  //Fondo virtual o maxima deteccion en cm del HC-Sr04
-#define MARJEN 5      //Marjen de error o tolerancia en la medicion de los sensores
+#define MARGEN 5      //Margen de error o tolerancia en la medicion de los sensores
 #define GRAD180 0     //Tiempo en que el robot tarda en girar 180 grados
 #define DISSEC 1500   //Tiempo de avance o retroceso del robot para despegarce del borde
 //
@@ -15,6 +15,7 @@ bool centrado();
 //
 /*FUNCION PRINCIPAL CON EL FUNCIONAMIENTO DEL DESPEJA AREA*/
 int DespejaArea() {
+  
   /*CONDICION 1*/
   /*EL SENSOR DE LA DERECHA MIDE MAS QUE EL DE LA IZQUIERDA*/
   if (HCSR_D.Distance() <= HCSR_I.Distance()) {
@@ -115,7 +116,7 @@ int DespejaArea() {
 /*DEVUELVE TRUE SI EL OBJETO ESTA CENTRADO DELANTE DEL ROBOR*/
 /*DE LO CONTRARIO DEVOLVERA FALSE*/
 bool centrado() {
-  if (((HCSR_F_D.Distance() <= (HCSR_F_I.Distance() + MARJEN)) && (HCSR_F_D.Distance() >= (HCSR_F_I.Distance() - MARJEN))) || ((HCSR_F_I.Distance() <= (HCSR_F_D.Distance() + MARJEN)) && (HCSR_F_I.Distance() >= (HCSR_F_D.Distance() - MARJEN)))) {
+  if (((HCSR_F_D.Distance() <= (HCSR_F_I.Distance() + MARGEN)) && (HCSR_F_D.Distance() >= (HCSR_F_I.Distance() - MARGEN))) || ((HCSR_F_I.Distance() <= (HCSR_F_D.Distance() + MARGEN)) && (HCSR_F_I.Distance() >= (HCSR_F_D.Distance() - MARGEN)))) {
     return true;
   } else {
     return false;
